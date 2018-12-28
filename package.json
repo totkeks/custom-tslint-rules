@@ -1,0 +1,21 @@
+{
+  "name": "tslint-rules",
+  "version": "0.0.1",
+  "description": "totkeks' additional tslint rules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tslint",
+    "rules",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  }
+}
