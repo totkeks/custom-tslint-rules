@@ -14,9 +14,9 @@ Add `node_modules/@totkeks/tslint-rules` to the `rules_directory` array in your 
 
 ## Supported Rules
 
-| Rule Name             | Description                                                   | Since |
-|-----------------------|---------------------------------------------------------------|-------|
-| newline-after-imports | Requires a certain number of newlines after the import block. | 0.1.0 |
+| Rule Name             | Description                                                        | Since |
+|-----------------------|--------------------------------------------------------------------|-------|
+| newline-after-imports | Requires a configurable number of newlines after the import block. | 0.1.0 |
 
 ## License
 

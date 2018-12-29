@@ -9,7 +9,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 	/* tslint:disable:object-literal-sort-keys */
 	public static metadata: Lint.IRuleMetadata = {
 		ruleName: "newline-after-imports",
-		description: "Requires a certain number of newlines after the import block",
+		description: "Requires a configurable number of newlines after the import block",
 		hasFix: true,
 		rationale: Lint.Utils.dedent`
 			Visually separating the imports from the rest of the code allows files to be more readable`,
