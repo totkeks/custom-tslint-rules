@@ -2,9 +2,43 @@ import * as Lint from "tslint";
 import * as ts from "typescript";
 
 
+const OPTION_NEWLINES_DEFAULT = 2;
+
 export class Rule extends Lint.Rules.AbstractRule {
-	public static FAILURE_STRING = (current: number, expected: number) => `Invalid number of newlines after imports. Expected ${expected}, got ${current}.`;
-	public static DEFAULT_NEWLINES = 2;
+
+	/* tslint:disable:object-literal-sort-keys */
+	public static metadata: Lint.IRuleMetadata = {
+		ruleName: "newline-after-imports",
+		description: "Requires a certain number of newlines after the import block",
+		hasFix: true,
+		rationale: Lint.Utils.dedent`
+			Visually separating the imports from the rest of the code allows files to be more readable`,
+		optionsDescription: "An integer indicating the number of newlines.",
+		options: {
+			type: "number",
+			minimum: "0",
+			default: OPTION_NEWLINES_DEFAULT
+		},
+		optionExamples: [
+			true,
+			[true, 2]
+		],
+		type: "maintainability",
+		typescriptOnly: false
+	};
+	/* tslint:enable:object-literal-sort-keys */
+
+	public static FAILURE_STRING(currentNewlines: number, expectedNewlines: number): string {
+		return `Invalid number of newlines after imports. Expected ${expectedNewlines}, got ${currentNewlines}.`;
+	}
+
+	public getRuleOptions(): number {
+		return this.ruleArguments[0] || OPTION_NEWLINES_DEFAULT;
+	}
+
+	public isEnabled(): boolean {
+		return super.isEnabled() && this.getRuleOptions() >= 0;
+	}
 
 	private endOfImportsRegEx = new RegExp("(?:^import.*from.*(\r?\n))+", "gm");
 	private firstNonEmptyLineRegex = new RegExp("^[^\r\n]", "gm");
@@ -28,7 +62,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 		const lastImportLine = sourceFile.getLineAndCharacterOfPosition(errorStart).line + 1;
 		const firstNonEmptyLine = sourceFile.getLineAndCharacterOfPosition(errorEnd).line + 1;
 
-		const expectedNewlines = (this.ruleArguments.length > 0 && <number>this.ruleArguments[0]) || Rule.DEFAULT_NEWLINES;
+		const expectedNewlines = this.getRuleOptions();
 		const currentNewlines = firstNonEmptyLine - lastImportLine;
 
 		if (currentNewlines === expectedNewlines) {
