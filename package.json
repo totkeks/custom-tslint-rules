@@ -1,8 +1,13 @@
 {
-  "name": "custom-tslint-rules",
+  "name": "@totkeks/tslint-rules",
   "version": "0.1.0",
-  "description": "totkeks' custom tslint rules",
-  "main": "index.js",
+  "description": "Additional typescript linting rules",
+  "author": {
+    "name": "Norman Dankert",
+    "email": "norman.dankert@outlook.com",
+    "url": "https://totkeks.xyz"
+  },
+  "repository": "github:totkeks/tslint-rules",
   "scripts": {
     "build": "tsc",
     "lint": "tslint -p tsconfig.json"
@@ -12,11 +17,13 @@
     "rules",
     "typescript"
   ],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.12.18",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
-  }
+  },
+  "files": [
+    "out"
+  ]
 }
