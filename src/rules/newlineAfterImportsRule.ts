@@ -40,7 +40,7 @@ export class Rule extends Lint.Rules.AbstractRule {
 		return super.isEnabled() && this.getRuleOptions() >= 0;
 	}
 
-	private endOfImportsRegEx = new RegExp("(?:^import.*from.*(\r?\n))+", "gm");
+	private endOfImportsRegEx = new RegExp("(?:(?:^import.*\r?\n)|(?:\r?\n))*(?:^import.*(\r?\n))", "gm");
 	private firstNonEmptyLineRegex = new RegExp("^[^\r\n]", "gm");
 
 	public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
