@@ -1,0 +1,6 @@
+rulesDirectory:
+    - out/rules
+
+rules:
+    newline-after-imports:
+        options: 2
